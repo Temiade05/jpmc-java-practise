@@ -26,8 +26,11 @@ public class RiskController {
             return "RISK LEVEL: CRITICAL - Restricted Stock Detected";
         } else if (totalValue > 1000000) {
             return "RISK LEVEL: HIGH - Trade value too large";
-        } else {
+        } else if(trade.getTicker().equals("TSLA")){
+            return "RISK LEVEL: MEDIUM - Volatile Stock";
+        }else {
             return "RISK LEVEL: LOW - Trade Approved";
         }
+        
     }
 }
