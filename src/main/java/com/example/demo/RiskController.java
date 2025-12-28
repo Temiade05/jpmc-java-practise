@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api/risk")
@@ -16,7 +19,7 @@ public class RiskController {
         return "Risk Engine is Online and Running";
     }
 
-    private List<String> highRiskStocks = List.of("GME", "AMC", "CRYPTO");
+    private Set<String> highRiskStocks = new HashSet<>(Arrays.asList("GME", "AMC", "CRYPTO"));
 
     @PostMapping("/calculate")
     public String calculateRisk(@RequestBody Trade trade) {
