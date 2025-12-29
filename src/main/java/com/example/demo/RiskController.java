@@ -13,27 +13,20 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/api/risk")
 public class RiskController {
+    private final RiskService riskService;
+
+    public RiskController(RiskService riskService) {
+        this.riskService = riskService;
+    }
 
     @GetMapping("/status")
     public String getStatus() {
         return "Risk Engine is Online and Running";
     }
 
-    private Set<String> highRiskStocks = new HashSet<>(Arrays.asList("GME", "AMC", "CRYPTO"));
 
     @PostMapping("/calculate")
     public String calculateRisk(@RequestBody Trade trade) {
-        double totalValue = trade.getPrice() * trade.getQuantity();
-
-        if (highRiskStocks.contains(trade.getTicker())) {
-            return "RISK LEVEL: CRITICAL - Restricted Stock Detected";
-        } else if (totalValue > 1000000) {
-            return "RISK LEVEL: HIGH - Trade value too large";
-        } else if(trade.getTicker().equals("TSLA")){
-            return "RISK LEVEL: MEDIUM - Volatile Stock";
-        }else {
-            return "RISK LEVEL: LOW - Trade Approved";
-        }
-        
+        return riskService.assessRisk(trade);
     }
 }
