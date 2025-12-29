@@ -27,6 +27,6 @@ public class RiskController {
 
     @PostMapping("/calculate")
     public String calculateRisk(@RequestBody Trade trade) {
-        return riskService.assessRisk(trade);
+        return riskService.calculateRisk(trade);
     }
 }
