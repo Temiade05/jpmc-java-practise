@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Service
 public class RiskService {
@@ -14,6 +15,9 @@ public class RiskService {
     // Inject the Repository
     public RiskService(TradeRepository tradeRepository) {
         this.tradeRepository = tradeRepository;
+    }
+    public List<Trade> getAllTrades() {
+        return tradeRepository.findAll();
     }
 
     public String calculateRisk(Trade trade) {

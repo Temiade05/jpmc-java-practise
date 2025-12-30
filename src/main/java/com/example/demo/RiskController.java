@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/risk")
@@ -22,6 +23,11 @@ public class RiskController {
     @GetMapping("/status")
     public String getStatus() {
         return "Risk Engine is Online and Running";
+    }
+
+    @GetMapping("/trades")
+    public List<Trade> getAllTrades() {
+        return riskService.getAllTrades();
     }
 
 
