@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.List;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/risk")
@@ -32,7 +33,7 @@ public class RiskController {
 
 
     @PostMapping("/calculate")
-    public String calculateRisk(@RequestBody Trade trade) {
+    public String calculateRisk(@Valid @RequestBody Trade trade) {
         return riskService.calculateRisk(trade);
     }
 }
